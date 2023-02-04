@@ -1,0 +1,12 @@
+{
+    "name": "anhduong/asm_php2",
+    "description": "autoload composer",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Web\\": ["models/","controllers/"]
+        },
+        "files": ["./models/env.php"]
+    },
+    "require": {}
+}
