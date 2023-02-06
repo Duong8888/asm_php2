@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nguyễn Ánh Dương</title>
-    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="./public/css/style.css">
     <!-- link icon gg fonts -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
@@ -24,7 +24,7 @@
                         <span class="material-symbols-outlined">
                             home
                         </span>
-                    <a href="">Home</a>
+                    <a href="?url=/">Home</a>
                 </div>
             </li>
             <li class="item">
@@ -32,7 +32,7 @@
                         <span class="material-symbols-outlined">
                             home
                         </span>
-                    <a href="">Product</a>
+                    <a href="?url=/">Product</a>
                 </div>
             </li>
             <li class="item">

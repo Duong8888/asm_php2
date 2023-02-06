@@ -1,28 +1,51 @@
 <?php
+
 namespace Web;
 
-class Product extends db{
+class Product extends db
+{
 
-    function hello(){
-        echo "hello";
+    public function getProduct($action = true, $id = '')
+    {
+        if ($action) {
+            $sql = "SELECT * FROM products";
+            return $this->getData($sql);
+        } else {
+            $sql = "SELECT * FROM img_product WHERE idpro = $id";
+            return $this->getData($sql);// trả về mảng ảnh của sản phẩm
+        }
     }
 
-
-    public function getProduct()
+    public function getOneProduct($id)
     {
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT * FROM products WHERE idpro = $id";
+        return $this->getData($sql, [], false);
+    }
+
+    public function addData($data = [], $action = true)
+    {
+        // các khai báo chuẩn bị sql đọc tại https://www.php.net/manual/en/pdostatement.execute.phps
+        if ($action) {
+            $sql = "INSERT INTO products(product_name,product_price,descripton,iddm) VALUES (:product_name,:product_price,:descripton,:iddm)";
+        } else {
+            $sql = "INSERT INTO img_product(idpro,src) VALUES (:idpro,:src)";
+        }
+        return $this->getData($sql, $data, 'add');
+    }
+
+    public function deleteData($id, $action = true)
+    {
+        if ($action) {
+            $sql = "DELETE FROM products WHERE idpro=$id";
+        } else {
+            $sql = "DELETE FROM img_product WHERE id=$id";
+        }
         return $this->getData($sql);
     }
 
-    public function addData($name, $price)
+    public function updateData($data = [])
     {
-        $sql = "INSERT INTO products(product_name,product_price,descripton,iddm) VALUES (product_name,product_price,descripton,iddm)";
-        return $this->getData($sql);
-    }
-
-    public function deleteData($id)
-    {
-        $sql = "DELETE FROM products WHERE id=$id";
-        return $this->getData($sql);
+        $sql = "UPDATE products SET product_name=:product_name,product_price=:product_price,descripton=:descripton,iddm=:iddm WHERE idpro=:idpro";
+        return $this->getData($sql, $data, 'update');
     }
 }

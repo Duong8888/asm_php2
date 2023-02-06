@@ -120,7 +120,7 @@ body::-webkit-scrollbar {
     align-items: center;
 }
 
-.item div>span {
+.item div > span {
     font-size: 25px;
     padding-right: 5px;
     color: var(--text-color);
@@ -131,7 +131,7 @@ body::-webkit-scrollbar {
 }
 
 .item:hover a,
-.item:hover div>span {
+.item:hover div > span {
     color: #f65365 !important;
 }
 
@@ -291,7 +291,8 @@ body::-webkit-scrollbar {
     border-radius: 5px;
     overflow: hidden;
 }
-.tabel-form input{
+
+.tabel-form input {
     width: 100%;
     height: 100%;
     padding-left: 40px;
@@ -300,7 +301,8 @@ body::-webkit-scrollbar {
     border: none;
     background-color: var(--bg);
 }
-.tabel-form span{
+
+.tabel-form span {
     position: absolute;
     width: 40px;
     height: 40px;
@@ -311,6 +313,9 @@ body::-webkit-scrollbar {
 
 .btn-action a {
     background-color: var(--bs-indigo);
+    width: auto;
+    height: 40px;
+    display: inline-block;
     padding: 10px 20px;
     margin-right: 10px;
     border-radius: 5px;
@@ -319,7 +324,21 @@ body::-webkit-scrollbar {
     border: 1px solid var(--bs-indigo);
     transition: .25s;
 }
-.btn-action a:hover{
+
+.delete-all {
+    background-color: var(--bs-indigo);
+    width: auto;
+    height: 40px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    border: 1px solid var(--bs-indigo);
+    transition: .25s;
+}
+
+.btn-action a:hover, .delete-all:hover {
     background-color: white;
     color: var(--bs-indigo);
 }
@@ -343,6 +362,8 @@ td {
 
 .table-main img {
     width: 50px;
+    height: 50px;
+    object-fit: cover;
     border-radius: 5px;
 }
 
@@ -361,7 +382,7 @@ td {
     font-size: 20px;
 }
 
-.table-main a>span {
+.table-main a > span {
     padding: 5px;
     transform: translateX(-5px);
     border-radius: 5px;
@@ -372,64 +393,75 @@ td {
     background-color: var(--bs-indigo);
     color: #fff;
 }
-.pagination{
+
+.pagination {
     width: 100%;
     height: 50px;
     display: flex;
     justify-content: end;
     align-items: center;
 }
-.item-pagination.active{
+.pagination a{
+    text-decoration: none;
+}
+.item-pagination.active {
     padding: 10px;
     background-color: var(--bs-indigo);
     color: #fff;
 }
-.item-pagination{
+
+.item-pagination {
     list-style: none;
     width: 30px;
     height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius:5px;
+    border-radius: 5px;
     color: var(--bs-gray);
 }
 
-.form-add-product{
+.form-add-product {
     width: 100%;
     height: auto;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
-.sub-title{
+
+.sub-title {
     margin-left: 10px;
     font-size: 20px;
 }
-.form-add-product input,select{
+
+.form-add-product input, select {
     width: 100%;
     height: 40px;
-    margin: 20px 0px; 
+    margin: 20px 0px;
     padding: 10px;
     border: 1px solid var(--bs-blue);
     border-radius: 5px;
     outline-color: var(--bs-blue);
     font-size: 15px;
 }
-.form-left{
+
+.form-left {
     width: 50%;
     height: auto;
     padding: 0 10px;
 }
-.form-right{
+
+.form-right {
     width: 50%;
     height: auto;
     padding: 0 10px;
 }
-.form-right img{
+
+.form-right img {
     width: 100px;
 }
-button[name="add-product"]{
+
+button[name="add-product"] {
     width: calc(100% - 10px);
     height: 50px;
     border: none;
@@ -439,16 +471,17 @@ button[name="add-product"]{
     font-weight: var(--font-weight);
     border-radius: 10px;
 }
-.form-right label{
-    width:100%;
+
+.form-right label {
+    width: 100%;
     height: auto;
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 20px;
 }
-.form-right label>span{
+
+.box-1 {
     border: 1px solid var(--bs-blue);
-    display: block;
     width: 80px;
     height: 80px;
     border-radius: 5px;
@@ -457,15 +490,37 @@ button[name="add-product"]{
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
-.form-right label>span>img{
+
+.form-right label > span > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-#img{
+
+#img {
     position: absolute;
     z-index: -1;
     width: 0px;
     opacity: 0;
+}
+.close-img{
+    position: absolute;
+    background-color: var(--bs-gray);
+    color: white;
+    width: 30px !important;
+    height: 30px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    border-bottom-left-radius: 5px;
+    user-select: none;
+}
+.input-close{
+    position: absolute;
+    z-index: -1;
 }

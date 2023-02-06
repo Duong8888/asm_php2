@@ -1,67 +1,74 @@
 <?php
+
 ?>
 <p class="title">Product list</p>
 <div class="main">
-    <div class="action-product">
-        <div class="btn-action">
-            <a href="">Add new product</a>
-            <a href="">Select all</a>
-            <a href="">Delete</a>
-        </div>
+    <form action="?url=delete-product&products" method="post">
+        <div class="action-product">
+            <div class="btn-action">
+                <a href="?url=add-product">Add new product</a>
+                <a class="select-all">Select all</a>
+                <button class="delete-all" type="button">Delete</button>
+            </div>
 
-
-        <div class="tabel-form">
+            <div class="tabel-form">
                         <span class="material-symbols-outlined">
                             search
                         </span>
-            <input type="search" placeholder="Search" name="search-table" id="">
+                <input type="search" placeholder="Search" name="search-table" id="">
+            </div>
         </div>
-    </div>
-    <table class="table-main">
-        <tr>
-            <th>Select</th>
-            <th>Name</th>
-            <th>Image</th>
-            <th>Price</th>
-            <th>Info</th>
-            <th>Action</th>
-            <?php foreach ($product
+        <table class="table-main" id="table-top">
+            <tr>
+                <th>Select</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Info</th>
+                <th>Action</th>
+                <?php foreach ($productsPages
 
-            as $key => $value){ ?>
-        <tr>
-            <td><input type="checkbox" name="<?= $key ?>"></td>
-            <td><?= $value['product_name'] ?></td>
-            <td>
-                <!--                ảnh làm său-->
-                <img src="http://genk.mediacdn.vn/k:thumb_w/640/2015/screen-shot-2015-07-30-at-2-31-57-pm-1438334096188/cau-chuyen-ve-nguoi-tao-ra-chu-ech-xanh-than-thanh.png"
-                     alt=""></td>
-            <td><span><?= $value['product_price'] ?></span>$</td>
-            <td>
-                <a href="">
+                as $key => $value){ ?>
+            <tr>
+                <td><input type="checkbox" name="<?= $value['idpro'] ?>" id="<?= $value['idpro'] ?>"></td>
+                <td><?= $value['product_name'] ?></td>
+                <td>
+                    <!--                ảnh làm său-->
+                    <img src="<?= $product->getProduct(false, $value['idpro'])[0]['src'] ?>"
+                         alt=""></td>
+                <td><span><?= $value['product_price'] ?></span>$</td>
+                <td>
+                    <a href="">
                                 <span class="material-symbols-outlined">
                                     visibility
                                 </span>
-                </a>
-            </td>
-            <td>
-                <a href="">
+                    </a>
+                </td>
+                <td>
+                    <a href="?url=edit-product&idpro=<?= $value['idpro'] ?>">
                                 <span class="material-symbols-outlined">
                                     rate_review
                                 </span>
-                </a>
-                <a href="">
+                    </a>
+                    <a onclick="return confirm('Bạn chắc chắn muốn xóa chứ.')"
+                       href="?url=delete-product&id=<?= $value['idpro'] ?>">
                                 <span class="material-symbols-outlined">
                                     delete
                                 </span>
-                </a>
-            </td>
-        </tr>
-        <?php } ?>
-    </table>
+                    </a>
+                </td>
+            </tr>
+            <?php } ?>
+        </table>
+    </form>
     <ul class="pagination">
-        <li class="item-pagination">1</li>
-        <li class="item-pagination">2</li>
-        <li class="item-pagination">3</li>
-        <li class="item-pagination active">4</li>
-        <li class="item-pagination">5</li>
+        <?php for ($i = 1; $i <= $productsPagesCount; $i++) { ?>
+            <a href="?pageIndex=<?=$i?>#table-top">
+                <li class="item-pagination <?php if (!isset($_GET['pageIndex']) && $i == 1) {
+                    echo "active";
+                } else if (isset($_GET['pageIndex']) && $_GET['pageIndex'] == $i) {
+                    echo "active";
+                }; ?>"><?= $i ?></li>
+            </a>
+        <?php } ?>
     </ul>

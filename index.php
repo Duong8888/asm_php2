@@ -1,23 +1,30 @@
 <?php
 require_once 'vendor/autoload.php';
+//Nạp namespace bằng từ khóa use
+use Web\Pagination;
 use Web\Product;
 use Web\db;
 use Web\ProductController;
 
-$url = isset($_GET['url']) ? $_GET['url'] : "/";
+$url = $_GET['url'] ?? "/";
 switch ($url) {
     case "/":
-        require_once "controllers/ProductController.php";
         $productController = new ProductController();
         $productController->listProduct();
         break;
     case 'add-product':
-        require_once "controllers/ProductController.php";
         $productController = new ProductController();
         $productController->addProduct();
         break;
+    case 'edit-product':
+        $productController = new ProductController();
+        if(isset($_GET['save'])){
+            $productController->editProduct();
+        }else{
+            $productController->editProduct(false);
+        }
+        break;
     case 'delete-product':
-        require_once "controllers/ProductController.php";
         $productController = new ProductController();
         $productController->deleteProduct();
         break;
