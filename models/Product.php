@@ -1,10 +1,7 @@
 <?php
-
 namespace Web;
-
 class Product extends db
 {
-
     public function getProduct($action = true, $id = '')
     {
         if ($action) {
@@ -47,5 +44,9 @@ class Product extends db
     {
         $sql = "UPDATE products SET product_name=:product_name,product_price=:product_price,descripton=:descripton,iddm=:iddm WHERE idpro=:idpro";
         return $this->getData($sql, $data, 'update');
+    }
+    public function searchProduct($search){
+        $sql = "SELECT * FROM products WHERE product_name LIKE '%$search%'";
+        return $this->getData($sql);
     }
 }

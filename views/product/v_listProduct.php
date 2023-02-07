@@ -11,12 +11,14 @@
                 <button class="delete-all" type="button">Delete</button>
             </div>
 
-            <div class="tabel-form">
+            <form action="" method="">
+                <div class="tabel-form">
                         <span class="material-symbols-outlined">
                             search
                         </span>
-                <input type="search" placeholder="Search" name="search-table" id="">
-            </div>
+                    <input type="search" placeholder="Search" name="search-table" id="search-table">
+                </div>
+            </form>
         </div>
         <table class="table-main" id="table-top">
             <tr>
@@ -63,7 +65,7 @@
     </form>
     <ul class="pagination">
         <?php for ($i = 1; $i <= $productsPagesCount; $i++) { ?>
-            <a href="?pageIndex=<?=$i?>#table-top">
+            <a href="?pageIndex=<?= $i ?>#table-top">
                 <li class="item-pagination <?php if (!isset($_GET['pageIndex']) && $i == 1) {
                     echo "active";
                 } else if (isset($_GET['pageIndex']) && $_GET['pageIndex'] == $i) {

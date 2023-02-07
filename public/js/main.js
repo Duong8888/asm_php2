@@ -7,15 +7,19 @@ if (inputFile) {
         // var arr = e.target.files;
         // arr.splice(0, 1);
         var newFileList = Array.from(e.target.files);// lấy thông tin file nhập vào chuyển thành dạng mảng
+        console.log(newFileList.length);
+        lable.innerHTML = '';
+        if (newFileList.length === 0) {
+            lable.innerHTML = `
+            <span class="material-symbols-outlined box-1">
+                add_photo_alternate
+            </span>
+            `;
+        }
         for (var i = 0; i < newFileList.length; i++) {
             var url = URL.createObjectURL(inputFile.files[i]);// tạo đường dẫn ảo
             lable.innerHTML += `
                 <span class="box-1">
-                        <label onclick="deleteImgUpload(${i})" for="" class="close-img">
-                            <span class="material-symbols-outlined">
-                                close
-                            </span>
-                        </label>
                         <img src="${url}" alt="">
                     </span>
             `;
@@ -38,7 +42,7 @@ if (btnSelect) {
                 btnDelete.style.display = 'inline';
                 btnSelect.innerHTML = 'Unchecked';
             });
-        }else {
+        } else {
             inputCheck.forEach((e) => {
                 e.checked = false;
                 console.log(e.value);
@@ -48,20 +52,20 @@ if (btnSelect) {
         }
     });
 
-    btnDelete.addEventListener('click',(e)=>{
+    btnDelete.addEventListener('click', (e) => {
         var result = confirm('Bạn muốn xóa tất cả chứ !');
-        if(result){
-            btnDelete.setAttribute('type','submit');
+        if (result) {
+            btnDelete.setAttribute('type', 'submit');
         }
     });
 
 }
 
-function closeImg(e){
+function closeImg(e) {
     console.log(e.parentElement);
     e.parentElement.style.display = 'none'
 }
-function deleteImgUpload(e){
+function deleteImgUpload(e) {
     console.log(e);
     // newFileList.splice(1,1);
 }

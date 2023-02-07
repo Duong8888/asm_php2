@@ -29,4 +29,3 @@ switch ($url) {
         $productController->deleteProduct();
         break;
 }
-die();

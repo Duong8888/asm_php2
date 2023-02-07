@@ -1,5 +1,4 @@
 <?php
-
 namespace Web;
 class ProductController
 {
