@@ -3,7 +3,7 @@
 ?>
 <div class="main">
     <p class="sub-title">Edit product</p>
-    <form action="?url=edit-product&save&idpro=<?= $_GET['idpro'] ?>" method="post" enctype="multipart/form-data" class="form-add-product">
+    <form action="" method="post" enctype="multipart/form-data" class="form-add-product">
         <div class="form-left">
             <input type="text" value="<?= $productInfo['product_name'] ?>" name="product_name" id="" placeholder="name">
             <input type="text" value="<?= $productInfo['product_price'] ?>" name="product_price" id="" placeholder="price">
@@ -30,7 +30,7 @@
                             </span>
                         </label>
                         <input type="checkbox" class="input-close"  name="<?=$imgItem['id']?>" id="<?=$imgItem['id']?>">
-                        <img src="<?= $imgItem['src'] ?>" alt="">
+                        <img src=".<?= $imgItem['src'] ?>" alt="">
                     </span>
                 <?php } ?>
             </label>

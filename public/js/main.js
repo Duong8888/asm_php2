@@ -1,4 +1,5 @@
 const inputFile = document.querySelector('#img');
+const box2 = document.querySelector('.box-2');
 if (inputFile) {
     const imgDisplay = document.querySelector('.box-img .material-symbols-outlined');
     const lable = document.querySelector('.box-img');
@@ -8,13 +9,21 @@ if (inputFile) {
         // arr.splice(0, 1);
         var newFileList = Array.from(e.target.files);// lấy thông tin file nhập vào chuyển thành dạng mảng
         console.log(newFileList.length);
-        lable.innerHTML = '';
+        if (box2){lable.innerHTML = '';}
         if (newFileList.length === 0) {
-            lable.innerHTML = `
+            if (box2){
+                lable.innerHTML = `
+            <span class="material-symbols-outlined box-2">
+                add_photo_alternate
+            </span>
+            `;
+            }else {
+                lable.innerHTML += `
             <span class="material-symbols-outlined box-1">
                 add_photo_alternate
             </span>
             `;
+            }
         }
         for (var i = 0; i < newFileList.length; i++) {
             var url = URL.createObjectURL(inputFile.files[i]);// tạo đường dẫn ảo

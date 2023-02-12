@@ -10,12 +10,14 @@ class ProductController
         $productsPages = $productPage->page();
         $productsPagesCount = $productPage->countPage();
 //      $products = $product->getProduct();
+        $path = '';
         $view = 'product/v_listProduct.php';
         include_once './views/layout.php';
     }
 
     function addProductForm()
     {
+        $path = '';
         $view = 'views/product/v_add.php';
         include_once './views/layout.php';
     }
@@ -83,6 +85,7 @@ class ProductController
             $product = new Product();
             $productInfo = $product->getOneProduct($id);
             $getImage = $product->getProduct(false, $id);
+            $path = '../';
             $view = 'views/product/v_edit.php';
             include_once './views/layout.php';
         }

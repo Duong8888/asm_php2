@@ -1,16 +1,22 @@
 {
-    "name": "anhduong/asm_php2",
-    "description": "duong/duong",
-    "type": "library",
-    "autoload": {
-        "psr-4": {
-            "Web\\": ["controllers/","models/"]
-        },
-        "files": ["./models/env.php","./common/router.php"]
+  "name": "anhduong/asm_php2",
+  "description": "duong/duong",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "Web\\": [
+        "controllers/",
+        "models/"
+      ]
     },
-    "require": {
-        "phroute/phroute": "^2.2",
-        "illuminate/events": "^9.51",
-        "ext-pdo": "*"
-    }
+    "files": [
+      "./models/env.php",
+      "./common/router.php"
+    ]
+  },
+  "require": {
+    "phroute/phroute": "^2.2",
+    "illuminate/events": "^9.51",
+    "ext-pdo": "*"
+  }
 }

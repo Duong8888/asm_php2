@@ -19,13 +19,17 @@ $router->get('/', function(){
     return "trang chủ";
 });
 
-$router->addRoute('GET', '/edit-product/{id}', function($id) {
+$router->get('/edit-product/{id}',function ($id){
     (new Web\ProductController())->editProduct($id,false);
 });
-
 $router->get('product-list', [Web\ProductController::class, 'listProduct']);
 $router->get('add-product', [Web\ProductController::class, 'addProductForm']);
 $router->post('add-data-product', [Web\ProductController::class, 'addDataProduct']);
+
+//$router->addRoute('GET', '/edit-product/{id}', function($id) {
+//    (new Web\ProductController())->editProduct($id,false);
+//});
+
 # NB. You can cache the return value from $router->getData() so you don't have to create the routes each request - massive speed gains
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
 
