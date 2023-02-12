@@ -1,32 +1,25 @@
 const inputFile = document.querySelector('#img');
 const box2 = document.querySelector('.box-2.box-1');
-const inputFile2 = document.querySelector('.img-1');
-if (inputFile2 && inputFile) {
-    const imgDisplay1 = document.querySelector('.box-img .material-symbols-outlined');
-    const lable2 = document.querySelector('.box-img');
-    inputFile.addEventListener('change', (e) => {
-        imgDisplay1.style.display = 'none';
-        // var arr = e.target.files;
-        // arr.splice(0, 1);
+const inputFile1 = document.querySelector('.img-1');
+const inputFile2 = document.querySelector('.img-2');
+if (inputFile1) {
+
+    inputFile1.addEventListener('change', (e) => {
+        var box = document.querySelector('.box-display')
         var newFileList = Array.from(e.target.files);// lấy thông tin file nhập vào chuyển thành dạng mảng
-        if (newFileList.length === 0) {
-            lable2.innerHTML = `
-            <span class="material-symbols-outlined box-1">
-                add_photo_alternate
-            </span>
-            `;
-        }
-        for (var i = 0; i < newFileList.length; i++) {
-            var url = URL.createObjectURL(inputFile.files[i]);// tạo đường dẫn ảo
-            lable2.innerHTML += `
-                <span class="box-1">
+        box.innerHTML = '';
+        for (let j = 0; j < newFileList.length; j++) {
+            console.log('111')
+            let url = URL.createObjectURL(inputFile1.files[j]);// tạo đường dẫn ảo
+            box.innerHTML += `
+                 <span class="box-1">
                         <img src="${url}" alt="">
                 </span>
             `;
         }
     });
 }
-if (inputFile) {
+if (inputFile && inputFile2) {
     const imgDisplay = document.querySelector('.box-img .material-symbols-outlined');
     const lable = document.querySelector('.box-img');
     inputFile.addEventListener('change', (e) => {

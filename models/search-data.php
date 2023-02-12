@@ -2,6 +2,7 @@
 include_once 'env.php';
 include_once 'db.php';
 include_once 'Product.php';
+use Web\Pagination;
 use Web\Product;
 $product = new Product();
 $arrData = $product->searchProduct($_SESSION['key']);

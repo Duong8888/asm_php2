@@ -107,5 +107,4 @@ class ProductController
         header('location:product-list');
     }
 }
-
 ?>

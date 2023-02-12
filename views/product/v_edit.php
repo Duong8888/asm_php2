@@ -33,6 +33,7 @@
                     </span>
                 <?php } ?>
             </label>
+            <label for="img" class="box-display"></label>
             <input type="file" name="img-product[]" id="img" class="img-1" multiple>
         </div>
         <button name="add-product">Save edit</button>

@@ -19,16 +19,21 @@ $router->get('/', function(){
     return "trang chủ";
 });
 
+
+$router->get('product-list', [Web\ProductController::class, 'listProduct']);
+
+$router->get('add-product', [Web\ProductController::class, 'addProductForm']);
+
+$router->post('add-data-product', [Web\ProductController::class, 'addDataProduct']);
+
 $router->get('/edit-product/{id}',function ($id){
     (new Web\ProductController())->editProduct($id,false);
 });
-$router->get('product-list', [Web\ProductController::class, 'listProduct']);
-$router->get('add-product', [Web\ProductController::class, 'addProductForm']);
-$router->post('add-data-product', [Web\ProductController::class, 'addDataProduct']);
 
-//$router->addRoute('GET', '/edit-product/{id}', function($id) {
-//    (new Web\ProductController())->editProduct($id,false);
-//});
+$router->post('delete-product',[Web\ProductController::class,'deleteProduct']);// xóa tất cả các mục đã chọn
+$router->get('delete-product',[Web\ProductController::class,'deleteProduct']);// xóa từng mục một
+
+//$router->get();
 
 # NB. You can cache the return value from $router->getData() so you don't have to create the routes each request - massive speed gains
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());

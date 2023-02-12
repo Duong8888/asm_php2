@@ -17,7 +17,7 @@
                     add_photo_alternate
                 </span>
             </label>
-            <input type="file" name="img-product[]" id="img" multiple>
+            <input type="file" name="img-product[]" id="img" class="img-2" multiple>
         </div>
         <button name="add-product">Add new product</button>
     </form>
