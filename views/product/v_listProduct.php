@@ -3,22 +3,20 @@
 ?>
 <p class="title">Product list</p>
 <div class="main">
-    <form action="?url=delete-product&products" method="post">
+    <form action="delete-product&products" method="post">
         <div class="action-product">
             <div class="btn-action">
-                <a href="?url=add-product">Add new product</a>
+                <a href="add-product">Add new product</a>
                 <a class="select-all">Select all</a>
                 <button class="delete-all" type="button">Delete</button>
             </div>
 
-            <form action="" method="">
                 <div class="tabel-form">
                         <span class="material-symbols-outlined">
                             search
                         </span>
                     <input type="search" placeholder="Search" name="search-table" id="search-table">
                 </div>
-            </form>
         </div>
         <table class="table-main" id="table-top">
             <tr>
@@ -47,13 +45,13 @@
                     </a>
                 </td>
                 <td>
-                    <a href="?url=edit-product&idpro=<?= $value['idpro'] ?>">
+                    <a href="edit-product/<?= $value['idpro'] ?>">
                                 <span class="material-symbols-outlined">
                                     rate_review
                                 </span>
                     </a>
                     <a onclick="return confirm('Bạn chắc chắn muốn xóa chứ.')"
-                       href="?url=delete-product&id=<?= $value['idpro'] ?>">
+                       href="delete-product&id=<?= $value['idpro'] ?>">
                                 <span class="material-symbols-outlined">
                                     delete
                                 </span>

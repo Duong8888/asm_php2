@@ -24,7 +24,7 @@
                         <span class="material-symbols-outlined">
                             home
                         </span>
-                    <a href="?url=/">Home</a>
+                    <a href="home">Home</a>
                 </div>
             </li>
             <li class="item">
@@ -32,7 +32,7 @@
                         <span class="material-symbols-outlined">
                             home
                         </span>
-                    <a href="?url=/">Product</a>
+                    <a href="product-list">Product</a>
                 </div>
             </li>
             <li class="item">

@@ -1,6 +1,6 @@
 <div class="main">
     <p class="sub-title">Add new product</p>
-    <form action="?url=add-product" method="post" enctype="multipart/form-data" class="form-add-product">
+    <form action="add-data-product" method="post" enctype="multipart/form-data" class="form-add-product">
         <div class="form-left">
             <input type="text" name="product_name" id="" placeholder="name">
             <input type="text" name="product_price" id="" placeholder="price">

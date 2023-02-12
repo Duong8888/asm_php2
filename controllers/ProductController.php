@@ -1,4 +1,5 @@
 <?php
+
 namespace Web;
 class ProductController
 {
@@ -8,15 +9,19 @@ class ProductController
         $productPage = new Pagination('products', 'idpro', 5);
         $productsPages = $productPage->page();
         $productsPagesCount = $productPage->countPage();
-        $products = $product->getProduct();
+//      $products = $product->getProduct();
         $view = 'product/v_listProduct.php';
         include_once './views/layout.php';
     }
 
-    function addProduct()
+    function addProductForm()
     {
         $view = 'views/product/v_add.php';
         include_once './views/layout.php';
+    }
+
+    function addDataProduct()
+    {
         if (isset($_POST['add-product'])) {
             $data = [
                 'product_name' => $_POST['product_name'],
@@ -38,10 +43,11 @@ class ProductController
                 $product->addData($dataImage[$key], false);
                 move_uploaded_file($item, $dataImage[$key]['src']);// add ảnh vào foder code
             }
+            header('location:product-list');
         }
     }
 
-    function editProduct($save = true)
+    function editProduct($id = 0,$save = true)
     {
         if ($save) {
             $product = new Product();
@@ -54,8 +60,8 @@ class ProductController
             ];
             $product->updateData($data);
             unset($_POST['product_name'], $_POST['product_price'], $_POST['description'], $_POST['category'], $_POST['add-product']);
-            foreach ($_POST as $key =>$value){
-                $product->deleteData($key,false);
+            foreach ($_POST as $key => $value) {
+                $product->deleteData($key, false);
             }
             $arrImg = $_FILES['img-product'];
             if ($arrImg['name'][0] !== '') {
@@ -72,11 +78,11 @@ class ProductController
                     move_uploaded_file($item, $dataImage[$key]['src']);// add ảnh vào foder code
                 }
             }
-            header('location:index.php');
+            header('location:product-list');
         } else {
             $product = new Product();
-            $productInfo = $product->getOneProduct($_GET['idpro']);
-            $getImage = $product->getProduct(false, $_GET['idpro']);
+            $productInfo = $product->getOneProduct($id);
+            $getImage = $product->getProduct(false, $id);
             $view = 'views/product/v_edit.php';
             include_once './views/layout.php';
         }
@@ -95,7 +101,7 @@ class ProductController
             $id = $_GET['id'];
             $product->deleteData($id);
         }
-        header('location:index.php');
+        header('location:product-list');
     }
 }
 
