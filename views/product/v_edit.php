@@ -22,7 +22,6 @@
                     </span>
                 <?php }?>
                 <?php foreach ($getImage as $imgItem) { ?>
-
                     <span class="box-1">
                         <label onclick="closeImg(this)" for="<?=$imgItem['id']?>" class="close-img">
                             <span class="material-symbols-outlined">
@@ -34,7 +33,7 @@
                     </span>
                 <?php } ?>
             </label>
-            <input type="file" name="img-product[]" id="img" multiple>
+            <input type="file" name="img-product[]" id="img" class="img-1" multiple>
         </div>
         <button name="add-product">Save edit</button>
     </form>

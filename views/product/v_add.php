@@ -13,7 +13,7 @@
         <div class="form-right">
             <input type="text"  name="description" id="" placeholder="description">
             <label for="img" class="box-img">
-                <span class="material-symbols-outlined box-2">
+                <span class="material-symbols-outlined box-2 box-1">
                     add_photo_alternate
                 </span>
             </label>
