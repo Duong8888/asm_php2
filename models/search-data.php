@@ -2,23 +2,31 @@
 include_once 'env.php';
 include_once 'db.php';
 include_once 'Product.php';
+include_once 'Pagination.php';
+
 use Web\Pagination;
 use Web\Product;
+
 $product = new Product();
-$arrData = $product->searchProduct($_SESSION['key']);
+if (empty($_SESSION['key'])) {
+    $productPage = new Pagination('products', 'idpro', 5);
+    $arrData = $productPage->page();
+} else {
+    $arrData = $product->searchProduct($_SESSION['key']);
+}
 ?>
-<tr>
-    <th>Select</th>
-    <th>Name</th>
-    <th>Image</th>
-    <th>Price</th>
-    <th>Info</th>
-    <th>Action</th>
-<tr>
+    <tr>
+        <th>Select</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th>Info</th>
+        <th>Action</th>
+    <tr>
 <?php if (count($arrData) == 0) { ?>
-<tr>
-    <td colspan="6" style="text-align: center;">không có bản gi nào</td>
-<tr>
+    <tr>
+        <td colspan="6" style="text-align: center;">không có bản gi nào</td>
+    <tr>
 <?php } else { ?>
     <?php foreach ($arrData as $key => $value) { ?>
         <td><input type="checkbox" name="<?= $value['idpro'] ?>" id="<?= $value['idpro'] ?>"></td>
@@ -41,11 +49,13 @@ $arrData = $product->searchProduct($_SESSION['key']);
                     rate_review
                 </span>
             </a>
-            <a onclick="return confirm('Bạn chắc chắn muốn xóa chứ.')" href="?url=delete-product&id=<?= $value['idpro'] ?>">
+            <a onclick="return confirm('Bạn chắc chắn muốn xóa chứ.')"
+               href="?url=delete-product&id=<?= $value['idpro'] ?>">
                 <span class="material-symbols-outlined">
                     delete
                 </span>
             </a>
         </td>
-</tr>
-<?php }} ?>
+        </tr>
+    <?php }
+} ?>

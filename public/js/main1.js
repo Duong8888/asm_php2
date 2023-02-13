@@ -48,11 +48,11 @@ if (inputFile && inputFile2) {
         }
     });
 }
-
+const formList = document.querySelector('.form-list');
+const btnDelete = document.querySelector('.delete-all');
 const btnSelect = document.querySelector('.select-all');
 if (btnSelect) {
     const inputCheck = document.querySelectorAll('.table-main input[type="checkbox"]');
-    const btnDelete = document.querySelector('.delete-all');
     btnDelete.style.display = 'none';
     var count = 0;
     btnSelect.addEventListener('click', () => {
@@ -74,13 +74,6 @@ if (btnSelect) {
         }
     });
 
-    btnDelete.addEventListener('click', (e) => {
-        var result = confirm('Bạn muốn xóa tất cả chứ !');
-        if (result) {
-            btnDelete.setAttribute('type', 'submit');
-        }
-    });
-
 }
 
 function closeImg(e) {
@@ -92,3 +85,32 @@ function deleteImgUpload(e) {
     console.log(e);
     // newFileList.splice(1,1);
 }
+
+const ovelay = document.querySelector('.overlay');
+const popup = document.querySelector('.popup-main');
+const arrBtn = document.querySelectorAll('.popup-btn button');
+var href = '';
+function opentPopup(e) {
+    popup.style.transform = 'translate(-50%, -50%) scale(1)';
+    popup.style.zIndex = '111';
+    ovelay.style.zIndex = '100';
+    href = e.href;
+}
+
+function result(e) {
+    if(e.innerText == 'Cancel'){
+        closePopup();
+    }else{
+        closePopup();
+        if(btnDelete){
+            formList.submit();
+        }else{
+            window.location=href;
+        }
+    }
+}
+function closePopup() {
+    popup.style.transform = 'translate(-50%, -50%) scale(0)';
+    popup.style.zIndex = '-1';
+    ovelay.style.zIndex = '-1';
+};

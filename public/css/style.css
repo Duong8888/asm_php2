@@ -120,7 +120,7 @@ body::-webkit-scrollbar {
     align-items: center;
 }
 
-.item div > span {
+.item div>span {
     font-size: 25px;
     padding-right: 5px;
     color: var(--text-color);
@@ -131,7 +131,7 @@ body::-webkit-scrollbar {
 }
 
 .item:hover a,
-.item:hover div > span {
+.item:hover div>span {
     color: #f65365 !important;
 }
 
@@ -338,7 +338,8 @@ body::-webkit-scrollbar {
     transition: .25s;
 }
 
-.btn-action a:hover, .delete-all:hover {
+.btn-action a:hover,
+.delete-all:hover {
     background-color: white;
     color: var(--bs-indigo);
 }
@@ -382,7 +383,7 @@ td {
     font-size: 20px;
 }
 
-.table-main a > span {
+.table-main a>span {
     padding: 5px;
     transform: translateX(-5px);
     border-radius: 5px;
@@ -401,9 +402,11 @@ td {
     justify-content: end;
     align-items: center;
 }
-.pagination a{
+
+.pagination a {
     text-decoration: none;
 }
+
 .item-pagination.active {
     padding: 10px;
     background-color: var(--bs-indigo);
@@ -434,7 +437,8 @@ td {
     font-size: 20px;
 }
 
-.form-add-product input, select {
+.form-add-product input,
+select {
     width: 100%;
     height: 40px;
     margin: 20px 0px;
@@ -494,7 +498,7 @@ button[name="add-product"] {
 }
 
 
-.form-right label > span > img {
+.form-right label>span>img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -506,7 +510,8 @@ button[name="add-product"] {
     width: 0px;
     opacity: 0;
 }
-.close-img{
+
+.close-img {
     position: absolute;
     background-color: var(--bs-gray);
     color: white;
@@ -521,7 +526,96 @@ button[name="add-product"] {
     border-bottom-left-radius: 5px;
     user-select: none;
 }
-.input-close{
+
+.input-close {
     position: absolute;
     z-index: -1;
+}
+
+.overlay {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+.popup-main {
+    position: absolute;
+    /* z-index: -1; */
+    background-image: url(https://tse1.mm.bing.net/th?id=OIP.y5uXXVdU_evHzR93rwCAzgAAAA&pid=Api&P=0);
+    background-position: 50% 10%;
+    background-size: 50%;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 200px;
+    transform: translate(-50%, -50%) scale(0);
+    transition: .25s;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    height: 50px;
+}
+
+.popup-header .material-symbols-outlined {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .25s;
+    border-bottom-left-radius: 10px;
+    color: white;
+}
+
+.popup-header .material-symbols-outlined:hover {
+    background-color: white;
+    cursor: pointer;
+    color: #6610f2;
+}
+
+.popup-content {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.message {
+    width: 100%;
+    height: auto;
+    font-weight: var(--font-weight);
+    color: white;
+    font-size: 25px;
+}
+
+.popup-btn {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+.popup-btn button {
+    width: 60px;
+    height: 30px;
+    margin: 0 5px;
+    background-color: var(--bs-indigo);
+    border: 1px solid var(--bs-indigo);
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.popup-btn button:hover {
+    background-color: white;
+    color: var(--bs-indigo);
 }
