@@ -37,6 +37,15 @@ $router->get('add-category',[Web\CategoryController::class,'showFormAdd']);
 $router->get('sign-in',[Web\UserController::class,'showSignIn']);
 $router->get('sign-up',[Web\UserController::class,'showSignUp']);
 
+$router->post('add-category',[Web\CategoryController::class, 'addCategory']);
+$router->get('category-delete/{id}',function ($id){
+    (new Web\CategoryController())->categoryDelete($id);
+});
+
+$router->post('update-product-category',[Web\CategoryController::class, 'updateProduct']);
+$router->get('delete/{id}',function ($id){
+    (new Web\CategoryController())->deleteCategory($id);
+});
 //$router->get();
 
 # NB. You can cache the return value from $router->getData() so you don't have to create the routes each request - massive speed gains

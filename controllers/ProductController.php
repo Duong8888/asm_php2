@@ -10,13 +10,16 @@ class ProductController extends BaseController
         $productsPages = $productPage->page();
         $productsPagesCount = $productPage->countPage();
         $path = '';
-        $this->render('product.list', compact('path', 'productsPages', 'productsPagesCount', 'product'));
+        $message = "Bạn muốn xóa chứ ?";
+        $this->render('product.list', compact('path', 'productsPages', 'productsPagesCount', 'product','message'));
     }
 
     function addProductForm()
     {
         $path = '';
-        $this->render('product.add', compact('path'));
+        $category = new Category();
+        $listCategory = $category->getCategory();
+        $this->render('product.add', compact('path', 'listCategory'));
     }
 
     function addDataProduct()
@@ -102,7 +105,7 @@ class ProductController extends BaseController
     {
         $product = new Product();
         $product->deleteData($id);
-        header('location:'.BASE_URL.'product-list');
+        header('location:' . BASE_URL . 'product-list');
     }
 }
 

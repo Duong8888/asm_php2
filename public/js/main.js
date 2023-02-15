@@ -92,7 +92,7 @@ const arrBtn = document.querySelectorAll('.popup-btn button');
 var href = '';
 var actionMain = '';
 
-function opentPopup(e, action = '111') {
+function opentPopup(e, action = 'test') {
     popup.style.transform = 'translate(-50%, -50%) scale(1)';
     popup.style.zIndex = '111';
     ovelay.style.zIndex = '100';

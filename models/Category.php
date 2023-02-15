@@ -18,7 +18,7 @@ class Category extends db
 
     public function addDataCategory($data = []){
         $sql = "INSERT INTO `categories`(`categories_name`, `image`) VALUES (:categories_name,:image)";
-        return $this->getData($sql,$data);
+        return $this->getData($sql,$data,'add');
     }
 
     public function deleteDataCategory($id){

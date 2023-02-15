@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nguyễn Ánh Dương</title>
-    @include('layout.css')
+    <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
 </head>
 
 <body>
@@ -17,7 +19,7 @@
                 </span>
         </div>
         <div class="popup-content">
-            <p class="message">{{$message}}</p>
+            <p class="message">Bạn muốn xóa chứ</p>
             <div class="popup-btn">
                 <button onclick="result(this)">OK</button>
                 <button onclick="result(this)">Cancel</button>
@@ -86,11 +88,14 @@
                 </ul>
             </div>
         </div>
-        @yield('content')
+        <div class="main">
+            
+        </div>
     </div>
 </div>
-</div>
-@include('layout.js')
+<script src="../../public/js/jquery-3.6.1.min.js"></script>
+<script src="../../public/js/main.js"></script>
+<script src="../../public/js/search.js"></script>
 </body>
 
 </html>

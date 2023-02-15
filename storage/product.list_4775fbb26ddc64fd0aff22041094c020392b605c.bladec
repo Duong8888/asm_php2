@@ -1,7 +1,7 @@
 <?php $_shouldextend[1]=1; ?>
 <?php $this->startSection('content'); ?>
- <p class="title">Product list</p>
- <div class="main">
+<p class="title">Product list</p>
+<div class="main">
  <form class="form-list" action="delete-product" method="post">
  <div class="action-product">
  <div class="btn-action">
@@ -48,8 +48,7 @@
  rate_review
  </span>
  </a>
- <a onclick="event.preventDefault(); opentPopup(this,'delete')" class="a-popup"
- href="delete-one/<?php echo \htmlentities($value["idpro"]??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <a onclick="event.preventDefault(); opentPopup(this,'delete')" class="a-popup" href="delete-one/<?php echo \htmlentities($value["idpro"]??'', ENT_QUOTES, 'UTF-8', false); ?>">
  <span class="material-symbols-outlined">
  delete
  </span>
@@ -60,8 +59,7 @@
  </table>
  </form>
  <ul class="pagination">
- <?php for($i = 1;$i <= $productsPagesCount; $i++): ?>
- <a href="?pageIndex=<?php echo \htmlentities($i??'', ENT_QUOTES, 'UTF-8', false); ?>#table-top">
+ <?php for($i = 1;$i <= $productsPagesCount; $i++): ?> <a href="?pageIndex=<?php echo \htmlentities($i??'', ENT_QUOTES, 'UTF-8', false); ?>#table-top">
  <li class="item-pagination <?php if (!isset($_GET['pageIndex']) && $i == 1) {
  echo "active";
  } else if (isset($_GET['pageIndex']) && $_GET['pageIndex'] == $i) {
@@ -70,5 +68,6 @@
  </a>
  <?php endfor; ?>
  </ul>
+</div>
 <?php $this->stopSection(); ?>
 <?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.index'); } ?>
