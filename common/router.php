@@ -9,7 +9,7 @@ $router = new RouteCollector();
 // filter check đăng nhập
 $router->filter('auth', function(){
     if(!isset($_SESSION['auth']) || empty($_SESSION['auth'])){
-        header('location: ' . BASE_URL . 'login');die;
+        header('location: ' . BASE_URL . 'sign-in');die;
     }
 });
 
@@ -21,17 +21,21 @@ $router->get('/', function(){
 
 
 $router->get('product-list', [Web\ProductController::class, 'listProduct']);
-
 $router->get('add-product', [Web\ProductController::class, 'addProductForm']);
-
 $router->post('add-data-product', [Web\ProductController::class, 'addDataProduct']);
-
 $router->get('/edit-product/{id}',function ($id){
     (new Web\ProductController())->editProduct($id,false);
 });
+$router->get('delete-one/{id}',function ($id){
+    (new Web\ProductController())->deleteProduct($id);
+});// xóa tất cả các mục đã chọn
+$router->post('delete-product',[Web\ProductController::class,'deleteProductAll']);// xóa từng mục một
 
-$router->post('delete-product',[Web\ProductController::class,'deleteProduct']);// xóa tất cả các mục đã chọn
-$router->get('delete-product',[Web\ProductController::class,'deleteProduct']);// xóa từng mục một
+
+$router->get('category',[Web\CategoryController::class,'listCategory']);
+$router->get('add-category',[Web\CategoryController::class,'showFormAdd']);
+$router->get('sign-in',[Web\UserController::class,'showSignIn']);
+$router->get('sign-up',[Web\UserController::class,'showSignUp']);
 
 //$router->get();
 

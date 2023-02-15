@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 const DBNAME = "foodlum";
 const DBUSER = "root";

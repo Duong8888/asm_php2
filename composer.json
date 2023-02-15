@@ -17,6 +17,7 @@
   "require": {
     "phroute/phroute": "^2.2",
     "illuminate/events": "^9.51",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "eftec/bladeone": "^4.8"
   }
 }

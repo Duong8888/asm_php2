@@ -1,7 +1,7 @@
 <?php
 
 namespace Web;
-class ProductController
+class ProductController extends BaseController
 {
     function listProduct()
     {
@@ -9,17 +9,14 @@ class ProductController
         $productPage = new Pagination('products', 'idpro', 5);
         $productsPages = $productPage->page();
         $productsPagesCount = $productPage->countPage();
-//      $products = $product->getProduct();
         $path = '';
-        $view = 'product/v_listProduct.php';
-        include_once './views/layout.php';
+        $this->render('product.list', compact('path', 'productsPages', 'productsPagesCount', 'product'));
     }
 
     function addProductForm()
     {
         $path = '';
-        $view = 'views/product/v_add.php';
-        include_once './views/layout.php';
+        $this->render('product.add', compact('path'));
     }
 
     function addDataProduct()
@@ -49,7 +46,7 @@ class ProductController
         }
     }
 
-    function editProduct($id = 0,$save = true)
+    function editProduct($id = 0, $save = true)
     {
         if ($save) {
             $product = new Product();
@@ -86,25 +83,27 @@ class ProductController
             $productInfo = $product->getOneProduct($id);
             $getImage = $product->getProduct(false, $id);
             $path = '../';
-            $view = 'views/product/v_edit.php';
-            include_once './views/layout.php';
+            $this->render('product.edit', compact('path', 'productInfo', 'getImage'));
         }
     }
 
-    function deleteProduct()
+    function deleteProductAll()
     {
         $product = new Product();
-        if (isset($_GET['products'])) {
-            unset($_POST['search-table']);
-            $arrDelete = $_POST;
-            foreach ($arrDelete as $key => $value) {
-                $product->deleteData($key);
-            }
-        } else {
-            $id = $_GET['id'];
-            $product->deleteData($id);
+        unset($_POST['search-table']);
+        $arrDelete = $_POST;
+        foreach ($arrDelete as $key => $value) {
+            $product->deleteData($key);
         }
         header('location:product-list');
     }
+
+    function deleteProduct($id)
+    {
+        $product = new Product();
+        $product->deleteData($id);
+        header('location:'.BASE_URL.'product-list');
+    }
 }
+
 ?>

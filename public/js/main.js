@@ -90,25 +90,35 @@ const ovelay = document.querySelector('.overlay');
 const popup = document.querySelector('.popup-main');
 const arrBtn = document.querySelectorAll('.popup-btn button');
 var href = '';
-function opentPopup(e) {
+var actionMain = '';
+
+function opentPopup(e, action = '111') {
     popup.style.transform = 'translate(-50%, -50%) scale(1)';
     popup.style.zIndex = '111';
     ovelay.style.zIndex = '100';
     href = e.href;
+    actionMain = action;
+    console.log(e.href)
 }
 
+
 function result(e) {
-    if(e.innerText == 'Cancel'){
+    if (e.innerText == 'Cancel') {
         closePopup();
-    }else{
+    } else {
         closePopup();
-        if(btnDelete){
-            formList.submit();
-        }else{
-            window.location=href;
+        if (btnDelete) {
+            if (actionMain == 'delete') {
+                window.location = href;
+            } else {
+                formList.submit();
+            }
+        } else {
+            window.location = href;
         }
     }
 }
+
 function closePopup() {
     popup.style.transform = 'translate(-50%, -50%) scale(0)';
     popup.style.zIndex = '-1';
