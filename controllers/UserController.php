@@ -30,6 +30,40 @@ class UserController extends BaseController
 
     public function addUser($action = '')
     {
+        $errors = [];
+        if (empty($_POST['user_name'])) {
+            $errors['user_name'] = 'Vui lòng nhập tên';
+        }
+        if (empty($_POST['pass'])) {
+            $errors['pass'] = 'Vui lòng nhập mật khẩu';
+        }
+        if ($_POST['pass'] !== $_POST['re-pass']) {
+            $errors['re-pass'] = 'Mật khẩu không khớp';
+        }
+        if (empty($_POST['email'])) {
+            $errors['email'] = 'Vui lòng nhập email';
+        } else {
+            $pattern = '/^[a-z]+[a-z\.0-9-_]{2,}@[a-z\.0-9-_]{3,}.[a-z]{2,}$/';
+            $check = preg_match($pattern,$_POST['email']);
+            if($check == 0){
+                $errors['email'] = 'Email không đúng định dạng';
+            }
+        }
+        if (empty($_POST['phone'])) {
+            $errors['phone'] = 'Vui lòng nhập số điện thoại';
+        } else {
+            $pattern = '/^0[0-9]{9}$/';
+            $matches = preg_match($pattern, $_POST['phone']);
+            if ($matches == 0) {
+                $errors['phone'] = 'Số điện thoại không đúng định dạng';
+            }
+        }
+        if ($_FILES['img-user']['size'] == 0) {
+            $errors['img-user'] = 'Vui lòng chọn ảnh';
+        }
+        if (count($errors) != 0) {
+            redirect('errors', $errors, 'add-user');
+        }
         $file = $_FILES['img-user'];
         $file_name = "./public/img/" . $file['name'];
         $data = [
@@ -44,10 +78,10 @@ class UserController extends BaseController
         ];
         move_uploaded_file($file['tmp_name'], $file_name);
         $this->user->addDataUser($data);
-        if($action == 'sign-up'){
-            header('location:' . BASE_URL . 'sign-in');
-        }else{
-            header('location:' . BASE_URL . 'user-list');
+        if ($action == 'sign-up') {
+            redirect('success', "Đăng kí thành công", 'sign-up');
+        } else {
+            redirect('success', "Thêm user thành công", 'add-user');
         }
     }
 
@@ -78,7 +112,7 @@ class UserController extends BaseController
 
     public function checkSignIn($action = false)
     {
-        if($action){
+        if ($action) {
             unset($_SESSION['auth']);
             header("location:" . BASE_URL . "sign-in");
             die();
@@ -91,9 +125,9 @@ class UserController extends BaseController
             $checkPass = $this->user->checkInfo('pass', $pass, $id);
             if (count($checkPass) > 0) {
                 $_SESSION['auth'] = $id;
-                if($checkMail[0]['position'] == 1){
+                if ($checkMail[0]['position'] == 1) {
                     header("location:" . BASE_URL . "product-list");
-                }else{
+                } else {
                     header("location:" . BASE_URL . "home-user");
                 }
             } else {

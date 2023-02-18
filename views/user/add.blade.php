@@ -1,6 +1,9 @@
 @extends('layout.index')
 @section('content')
     <div class="main">
+        @if(isset($_SESSION['success']) && isset($_GET['msg']) )
+            <span style="color: green">{{ $_SESSION['success'] }}</span>
+        @endif
         <p class="sub-title">Add new product</p>
         <form action="add-data-user" method="post" enctype="multipart/form-data" class="form-add-product">
             <div class="form-left">
@@ -10,7 +13,7 @@
                 @endif
                 <input type="password" name="pass" id="" placeholder="password">
                 @if(isset($_SESSION['errors']) && isset($_GET['msg']) )
-                    <span style="color: red">{{ $_SESSION['errors']['password'] }}</span>
+                    <span style="color: red">{{ $_SESSION['errors']['pass'] }}</span>
                 @endif
                 <input type="password" name="re-pass" id="" placeholder="re-password">
                 @if(isset($_SESSION['errors']) && isset($_GET['msg']) )
