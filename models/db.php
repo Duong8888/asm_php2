@@ -37,5 +37,4 @@ class db
         return $stmt->fetch();
     }
 }
-
 ?>

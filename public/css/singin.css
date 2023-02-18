@@ -13,7 +13,7 @@ html {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: linear-gradient(#141e30, #243b55);
+    background: linear-gradient(45deg,#141e30 50%, #243b55 50%);
 }
 
 .login-box {
@@ -183,4 +183,10 @@ html {
     100% {
         bottom: 100%;
     }
+}
+.main-btn{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
 }

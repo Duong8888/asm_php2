@@ -11,7 +11,7 @@ class ProductController extends BaseController
         $productsPagesCount = $productPage->countPage();
         $path = '';
         $message = "Bạn muốn xóa chứ ?";
-        $this->render('product.list', compact('path', 'productsPages', 'productsPagesCount', 'product','message'));
+        $this->render('product.list', compact('path', 'productsPages', 'productsPagesCount', 'product', 'message'));
     }
 
     function addProductForm()
@@ -24,6 +24,26 @@ class ProductController extends BaseController
 
     function addDataProduct()
     {
+        $errors = [];
+        if (empty($_POST['product_name'])) {
+            $errors['product_name'] = 'Vui lòng nhập tên sản phẩm';
+        }
+        if (empty($_POST['product_price'])) {
+            $errors['product_price'] = 'Vui lòng nhập giá sản phẩm';
+        }
+        if (empty($_POST['description'])) {
+            $errors['description'] = 'Vui lòng nhập mô tả sản phẩm';
+        }
+        if (empty($_POST['category'])) {
+            $errors['category'] = 'Vui lòng chọn danh mục';
+        }
+        if ($_FILES['img-product']['size'] == 0) {
+            $errors['img-product'] = 'Vui lòng chọn ảnh sản phẩm';
+        }
+        if (count($errors) != 0) {
+            redirect('errors', $errors, 'add-product');
+        }
+
         if (isset($_POST['add-product'])) {
             $data = [
                 'product_name' => $_POST['product_name'],
@@ -45,7 +65,7 @@ class ProductController extends BaseController
                 $product->addData($dataImage[$key], false);
                 move_uploaded_file($item, $dataImage[$key]['src']);// add ảnh vào foder code
             }
-            header('location:product-list');
+            redirect('success', "Thêm sản phẩm thành công", 'add-product');
         }
     }
 
@@ -58,7 +78,7 @@ class ProductController extends BaseController
                 'product_price' => $_POST['product_price'],
                 'descripton' => $_POST['description'],
                 'iddm' => $_POST['category'],
-                'idpro' => $_GET['idpro']
+                'idpro' => $id
             ];
             $product->updateData($data);
             unset($_POST['product_name'], $_POST['product_price'], $_POST['description'], $_POST['category'], $_POST['add-product']);
@@ -71,7 +91,7 @@ class ProductController extends BaseController
                 $dataImage = [];
                 foreach ($arrImg['name'] as $item) {
                     $dataImage[] = [
-                        'idpro' => $_GET['idpro'],
+                        'idpro' => $id,
                         'src' => "./public/img/" . $item
                     ];
                 }
@@ -80,13 +100,15 @@ class ProductController extends BaseController
                     move_uploaded_file($item, $dataImage[$key]['src']);// add ảnh vào foder code
                 }
             }
-            header('location:product-list');
+            header('location:' . BASE_URL . 'product-list');
         } else {
+            $category = new Category();
+            $listCategory = $category->getCategory();
             $product = new Product();
             $productInfo = $product->getOneProduct($id);
             $getImage = $product->getProduct(false, $id);
             $path = '../';
-            $this->render('product.edit', compact('path', 'productInfo', 'getImage'));
+            $this->render('product.edit', compact('path', 'productInfo', 'getImage', 'listCategory'));
         }
     }
 

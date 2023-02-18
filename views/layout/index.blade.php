@@ -1,3 +1,6 @@
+@if(!isset($_SESSION['auth']))
+        {{header('location:'.BASE_URL.'sign-in')}}
+@endif
 <!doctype html>
 <html lang="en">
 
@@ -61,7 +64,7 @@
                         <span class="material-symbols-outlined">
                             home
                         </span>
-                    <a href="">User</a>
+                    <a href="/asm_php2/user-list">User</a>
                 </div>
             </li>
         </ul>
@@ -82,7 +85,7 @@
                 <ul class="popup">
                     <li><a href="">Nguyễn Ánh Dương</a></li>
                     <li><a href="">Profile</a></li>
-                    <li><a href="">Log out</a></li>
+                    <li><a href="{{BASE_URL.'logOut/true'}}">Log out</a></li>
                 </ul>
             </div>
         </div>

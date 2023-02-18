@@ -6,18 +6,41 @@ class User extends db
 {
     protected $table = 'user';
 
-    public function getDataUser($action = true,$id = ''){
-        if($action){
+    public function getDataUser($action = true, $id = '')
+    {
+        if ($action) {
             $sql = "SELECT * FROM $this->table";
-            $this->getData($sql);
-        }else{
+            return $this->getData($sql);
+        } else {
             $sql = "SELECT * FROM $this->table iduser = $id";
-            $this->getData($sql,[],false);
+            return $this->getData($sql, [], false);
         }
     }
 
-    function addDataUser(){
+    public function addDataUser($data = [])
+    {
+        $sql = "INSERT INTO $this->table(`user_name`, `full_name`, `pass`, `email`, `phone`, `address`, `position`, `avatar`) VALUES (:user_name, :full_name, :pass, :email, :phone, :address, :position, :avatar)";
+        $this->getData($sql, $data, 'add');
+    }
 
+    public function deleteDataUser($id)
+    {
+        $sql = "DELETE FROM $this->table WHERE iduser = $id";
+        $this->getData($sql);
+    }
+
+    public function updateDataUser($data, $id, $action = true)
+    {
+        $sql = "UPDATE $this->table SET `user_name`=:user_name,`full_name`=:full_name,`pass`=:pass,`email`=:email,`phone`=:phone,`address`=:address,`position`=:position,`avatar`=':avatar' WHERE iduser = :iduser";
+        $this->getData($sql, $data, 'update');
+    }
+
+    public function checkInfo($colum,$value,$id = ''){
+        $sql = "SELECT * FROM `user` WHERE $colum = $value";
+        if(strlen($id) != 0){
+            $sql = "SELECT * FROM `user` WHERE $colum = $value AND iduser = $id";
+        }
+        return $this->getData($sql);
     }
 
 }

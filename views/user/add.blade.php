@@ -2,27 +2,41 @@
 @section('content')
     <div class="main">
         <p class="sub-title">Add new product</p>
-        <form action="add-data-product" method="post" enctype="multipart/form-data" class="form-add-product">
+        <form action="add-data-user" method="post" enctype="multipart/form-data" class="form-add-product">
             <div class="form-left">
-                <input type="text" name="product_name" id="" placeholder="name">
-                <input type="text" name="product_price" id="" placeholder="price">
-                <select name="category" id="">
-                    <option value="0">Lựa chọn danh mục</option>
-                    @foreach($listCategory as $item)
-                        <option value="{{$item['iddm']}}">{{$item['categories_name']}}</option>
-                    @endforeach
-                </select>
+                <input type="text" name="user_name" id="" placeholder="name">
+                @if(isset($_SESSION['errors']) && isset($_GET['msg']) )
+                    <span style="color: red">{{ $_SESSION['errors']['user_name'] }}</span>
+                @endif
+                <input type="password" name="pass" id="" placeholder="password">
+                @if(isset($_SESSION['errors']) && isset($_GET['msg']) )
+                    <span style="color: red">{{ $_SESSION['errors']['password'] }}</span>
+                @endif
+                <input type="password" name="re-pass" id="" placeholder="re-password">
+                @if(isset($_SESSION['errors']) && isset($_GET['msg']) )
+                    <span style="color: red">{{ $_SESSION['errors']['re-pass'] }}</span>
+                @endif
             </div>
             <div class="form-right">
-                <input type="text" name="description" id="" placeholder="description">
+                <input type="text" name="email" id="" placeholder="email">
+                @if(isset($_SESSION['errors']) && isset($_GET['msg']) )
+                    <span style="color: red">{{ $_SESSION['errors']['email'] }}</span>
+                @endif
+                <input type="number" name="phone" id="" placeholder="phone">
+                @if(isset($_SESSION['errors']) && isset($_GET['msg']) )
+                    <span style="color: red">{{ $_SESSION['errors']['phone'] }}</span>
+                @endif
                 <label for="img" class="box-img">
                 <span class="material-symbols-outlined box-2 box-1">
                     add_photo_alternate
                 </span>
                 </label>
-                <input type="file" name="img-product[]" id="img" class="img-2" multiple>
+                @if(isset($_SESSION['errors']) && isset($_GET['msg']) )
+                    <span style="color: red">{{ $_SESSION['errors']['img-user'] }}</span>
+                @endif
+                <input type="file" name="img-user" id="img" class="img-2">
             </div>
-            <button name="add-product">Add new product</button>
+            <button name="add-product">Add new user</button>
         </form>
     </div>
 @endsection

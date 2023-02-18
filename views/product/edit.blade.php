@@ -2,16 +2,17 @@
 @section('content')
     <div class="main">
         <p class="sub-title">Edit product</p>
-        <form action="" method="post" enctype="multipart/form-data" class="form-add-product">
+        <form action="{{BASE_URL."save-edit-product/".$productInfo['idpro']}}" method="post"
+              enctype="multipart/form-data" class="form-add-product">
             <div class="form-left">
                 <input type="text" value="{{$productInfo['product_name']}}" name="product_name" id=""
                        placeholder="name">
                 <input type="text" value="{{$productInfo['product_price']}}" name="product_price" id=""
                        placeholder="price">
                 <select name="category" id="">
-                    <option value="1">cá</option>
-                    <option value="2">thịt</option>
-                    <option value="3">rău</option>
+                    @foreach($listCategory as $item)
+                        <option <?=($productInfo['iddm'] == $item['iddm'])?"selected":""?> value="{{$item['iddm']}}">{{$item['categories_name']}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="form-right">

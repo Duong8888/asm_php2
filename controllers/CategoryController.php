@@ -41,6 +41,16 @@ class CategoryController extends BaseController
 
     public function addCategory()
     {
+        $errors = [];
+        if (empty($_POST['category_name'])) {
+            $errors['category_name'] = 'Vui lòng nhập tên danh mục';
+        }
+        if ($_FILES['img-category']['size'] == 0) {
+            $errors['img-category'] = 'Vui lòng chọn ảnh danh mục';
+        }
+        if(count($errors)){
+            redirect('errors', $errors, 'add-category');
+        }
         $file = $_FILES['img-category'];
         $fileName = "./public/img/" . $file['name'];
         $data = [
@@ -49,7 +59,7 @@ class CategoryController extends BaseController
         ];
         move_uploaded_file($file['tmp_name'], $fileName);
         $this->category->addDataCategory($data);
-        header("location:category");
+        redirect('success', "Thêm danh mục thành công", 'add-category');
     }
 
     public function updateProduct()

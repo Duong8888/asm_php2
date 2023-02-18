@@ -18,15 +18,19 @@ class Pagination extends db
         $this->item = $item;
     }
 
-    function page()
+    function page($action = true,$colum = '',$value = '')
     {
         if (isset($_GET['pageIndex'])) {
-            $pageIndex = ($_GET['pageIndex'] <= 0)?1:$_GET['pageIndex'];
-        }else{
+            $pageIndex = ($_GET['pageIndex'] <= 0) ? 1 : $_GET['pageIndex'];
+        } else {
             $pageIndex = 1;
         }
         $this->start = $this->item * ($pageIndex - 1);
-        $query = "SELECT * FROM $this->table LIMIT $this->start,$this->item";
+        if ($action) {
+            $query = "SELECT * FROM $this->table LIMIT $this->start,$this->item";
+        }else{
+            $query = "SELECT * FROM $this->table WHERE $colum = $value LIMIT $this->start,$this->item";
+        }
         return $this->getData($query);
     }
 
