@@ -4,7 +4,7 @@
         @if(isset($_SESSION['success']) && isset($_GET['msg']) )
             <span style="color: green">{{ $_SESSION['success'] }}</span>
         @endif
-        <p class="sub-title">Add new product</p>
+        <p class="sub-title">Add new user</p>
         <form action="add-data-user" method="post" enctype="multipart/form-data" class="form-add-product">
             <div class="form-left">
                 <input type="text" name="user_name" id="" placeholder="name">

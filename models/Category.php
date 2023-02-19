@@ -26,4 +26,13 @@ class Category extends db
         return $this->getData($sql);
     }
 
+    public function upDate($data = [],$img = true){
+        if($img){
+            $sql = "UPDATE `categories` SET `categories_name`=?,`image`=? WHERE iddm = ?";
+        }else{
+            $sql = "UPDATE `categories` SET `categories_name`=? WHERE iddm = ?";
+        }
+        $this->getData($sql,$data,'update');
+    }
+
 }

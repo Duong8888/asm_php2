@@ -1,7 +1,7 @@
 @if(!isset($_SESSION['auth']))
-        {{header('location:'.BASE_URL.'sign-in')}}
+{{header('location:'.BASE_URL.'sign-in')}}
 @endif
-<!doctype html>
+        <!doctype html>
 <html lang="en">
 
 <head>
@@ -46,7 +46,7 @@
             <li class="item">
                 <div>
                         <span class="material-symbols-outlined">
-                            home
+                            bar_chart
                         </span>
                     <a href="/asm_php2/product-list">Product</a>
                 </div>
@@ -54,7 +54,7 @@
             <li class="item">
                 <div>
                         <span class="material-symbols-outlined">
-                            home
+                            category
                         </span>
                     <a href="/asm_php2/category">Categories</a>
                 </div>
@@ -62,9 +62,25 @@
             <li class="item">
                 <div>
                         <span class="material-symbols-outlined">
-                            home
+                            group
                         </span>
                     <a href="/asm_php2/user-list">User</a>
+                </div>
+            </li>
+            <li class="item">
+                <div>
+                        <span class="material-symbols-outlined">
+                            payments
+                        </span>
+                    <a href="/asm_php2/voucher">Voucher</a>
+                </div>
+            </li>
+            <li class="item">
+                <div>
+                        <span class="material-symbols-outlined">
+                            imagesmode
+                        </span>
+                    <a href="/asm_php2/slider-list">Slider</a>
                 </div>
             </li>
         </ul>

@@ -715,3 +715,35 @@ select[name="category-1"]{
     text-align: center;
     font-weight: bold;
 }
+
+/*slider*/
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.swiper {
+    margin-left: auto;
+    margin-right: auto;
+}
+.box-text{
+    transform: translateY(-50px);
+    color: #fff;
+}

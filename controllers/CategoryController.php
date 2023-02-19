@@ -28,6 +28,31 @@ class CategoryController extends BaseController
         $this->render('category.add', compact('path'));
     }
 
+    public function showFormEdit($id)
+    {
+        $path = '../';
+        $infoCategory = $this->category->getCategory(false, $id);
+        $this->render('category.edit', compact('path', 'infoCategory'));
+    }
+
+    public function showFormEditSave($id)
+    {
+        $file = $_FILES['img-category'];
+        if ($file['size'] == 0) {
+            $data = [
+                $_POST['category_name'],$id
+            ];
+            $this->category->upDate($data,false);
+        } else {
+            $fileName = "./public/img/" . $file['name'];
+            $data = [
+                $_POST['category_name'],$fileName,$id
+            ];
+            $this->category->upDate($data);
+        }
+        header("location:".BASE_URL.'category');
+    }
+
     public function categoryDelete($id)
     {
         $path = '../';
@@ -48,7 +73,7 @@ class CategoryController extends BaseController
         if ($_FILES['img-category']['size'] == 0) {
             $errors['img-category'] = 'Vui lòng chọn ảnh danh mục';
         }
-        if(count($errors)){
+        if (count($errors)) {
             redirect('errors', $errors, 'add-category');
         }
         $file = $_FILES['img-category'];

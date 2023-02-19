@@ -8,6 +8,7 @@
             </div>
             <div class="action-product">
                 <div class="btn-action">
+                    <a href="{{BASE_URL.'edit-category/'.$category['iddm']}}">Edit catagory</a>
                     <a href="{{BASE_URL.'delete/'.$category['iddm']}}" onclick="event.preventDefault(); opentPopup(this,'delete')" class="delete-category">Delete category</a>
                     <a class="select-all">Select all</a>
 

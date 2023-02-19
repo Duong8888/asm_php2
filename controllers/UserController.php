@@ -28,6 +28,45 @@ class UserController extends BaseController
         $this->render('user.add');
     }
 
+    public function editUser($id, $action = '')
+    {
+        if ($action == 'save') {
+            $file = $_FILES['img-user'];
+            if ($file['size'] > 0) {
+                $file_name = "./public/img/" . $file['name'];
+                $data = [
+                    'user_name' => $_POST['user_name'],
+                    'full_name' => $_POST['user_name'],
+                    'pass' => $_POST['pass'],
+                    'email' => $_POST['email'],
+                    'phone' => $_POST['phone'],
+                    'address' => "Hà Tây",
+                    'position' => 0,
+                    'avatar' => $file_name,
+                    'iduser' => $id
+                ];
+                $this->user->updateDataUser($data);
+            } else {
+                $data = [
+                    'user_name' => $_POST['user_name'],
+                    'full_name' => $_POST['user_name'],
+                    'pass' => $_POST['pass'],
+                    'email' => $_POST['email'],
+                    'phone' => $_POST['phone'],
+                    'address' => "Hà Tây",
+                    'position' => 0,
+                    'iduser' => $id
+                ];
+                $this->user->updateDataUser($data,false);
+            }
+            header('location:'.BASE_URL.'user-list');
+        } else {
+            $path = '../';
+            $infoUser = $this->user->getDataUser(false, $id);
+            $this->render('user.edit', compact('path', 'infoUser'));
+        }
+    }
+
     public function addUser($action = '')
     {
         $errors = [];
@@ -44,8 +83,8 @@ class UserController extends BaseController
             $errors['email'] = 'Vui lòng nhập email';
         } else {
             $pattern = '/^[a-z]+[a-z\.0-9-_]{2,}@[a-z\.0-9-_]{3,}.[a-z]{2,}$/';
-            $check = preg_match($pattern,$_POST['email']);
-            if($check == 0){
+            $check = preg_match($pattern, $_POST['email']);
+            if ($check == 0) {
                 $errors['email'] = 'Email không đúng định dạng';
             }
         }
